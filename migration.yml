@@ -1,0 +1,20 @@
+version: '3.7'
+
+services:
+  gdrive-migrator:
+    image: pfidr/rclone:1.56.2
+    container_name: gdrive-migrator
+    restart: unless-stopped
+    volumes:
+      - ./:/config
+    environment:
+      SYNC_SRC: "old-gdrive:"
+      SYNC_DEST: "new-gdrive:"
+      SYNC_OPTS: '--log-level ${LOG_LEVEL} --stats 120s --buffer-size 128M --drive-chunk-size 128M --use-mmap --timeout 1m --config /config/rclone_docker.conf --max-duration=${MAX_DURATION} --min-size=${MIN_SIZE} --max-size=${MAX_SIZE} --drive-server-side-across-configs --drive-stop-on-upload-limit --drive-stop-on-download-limit'
+      RCLONE_DIR_CHECK_SKIP: 'false'
+      RCLONE_CMD: copy
+      FORCE_SYNC: 'true'
+      TZ: ${DOCKER_TZ}
+      CRON: 0/2 * * * *
+      UID: ${PUID}
+      GID: ${PGID}
