@@ -10,7 +10,7 @@ services:
     environment:
       SYNC_SRC: "old-gdrive:"
       SYNC_DEST: "new-gdrive:"
-      SYNC_OPTS: '--log-level ${LOG_LEVEL} --stats 120s --buffer-size 128M --drive-chunk-size 128M --use-mmap --timeout 1m --config /config/rclone_docker.conf --max-duration=${MAX_DURATION} --min-size=${MIN_SIZE} --max-size=${MAX_SIZE} --drive-server-side-across-configs --drive-stop-on-upload-limit --drive-stop-on-download-limit'
+      SYNC_OPTS: '--log-level ${LOG_LEVEL} --stats 120s --buffer-size 128M --drive-chunk-size 128M --use-mmap --timeout 1m --config /config/rclone.conf --max-duration=${MAX_DURATION} --min-size=${MIN_SIZE} --max-size=${MAX_SIZE} --drive-server-side-across-configs --drive-stop-on-upload-limit --drive-stop-on-download-limit'
       RCLONE_DIR_CHECK_SKIP: 'false'
       RCLONE_CMD: copy
       FORCE_SYNC: 'true'
