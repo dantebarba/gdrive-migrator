@@ -15,6 +15,18 @@ services:
       RCLONE_CMD: copy
       FORCE_SYNC: 'true'
       TZ: ${DOCKER_TZ}
-      CRON: "*/2 * * * *"
+      CRON: "0 * * * *"
       UID: ${PUID}
       GID: ${PGID}
+
+  rclone-sa-autoswap:
+    image: dantebarba/rclone-sa-autoswap:latest
+    container_name: rclone-sa-autoswap
+    volumes:
+      - ./:/config
+    environment:
+      CRON: ${AUTOSWAP_CRON} # will renew the SA number once every hour
+      MAX_NUMBER: ${SA_NUMBER} # the number of SAs you generated
+      PREFIX: ${SA_PREFIX} # the prefix with path included before the SA Number.
+      # SAs should be named with the following schema: my-sa-{number}.json where number is the SA designated number.
+      # this number should be sequential, from 1 to n.
