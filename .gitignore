@@ -131,3 +131,5 @@ dmypy.json
 keys/
 rclone.conf
 rclone_docker.conf
+
+.DS_Store
