@@ -14,7 +14,7 @@ services:
     environment:
       SYNC_SRC: "gdrive:"
       SYNC_DEST: ${LOCAL_FS}
-      SYNC_OPTS: '--log-level ${LOG_LEVEL} --order-by size,descending  --stats 5m --use-mmap --timeout 2m --config /config/rclone.conf --max-duration=${MAX_DURATION} --max-transfer ${MAX_TRANSFER} --bwlimit ${BWLIMIT} --drive-skip-gdocs --drive-acknowledge-abuse --cutoff-mode SOFT --fast-list --drive-server-side-across-configs --drive-stop-on-download-limit --log-level NOTICE'
+      SYNC_OPTS: '--log-level ${LOG_LEVEL} --check-first --order-by size,descending  --stats 5m --use-mmap --timeout 2m --config /config/rclone.conf --max-duration=${MAX_DURATION} --max-transfer ${MAX_TRANSFER} --bwlimit ${BWLIMIT} --drive-skip-gdocs --drive-acknowledge-abuse --cutoff-mode SOFT --fast-list --drive-server-side-across-configs --drive-stop-on-download-limit'
       RCLONE_DIR_CHECK_SKIP: 'false'
       RCLONE_CMD: copy
       FORCE_SYNC: ${FORCE_SYNC}
