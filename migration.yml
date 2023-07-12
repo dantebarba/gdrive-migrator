@@ -2,20 +2,24 @@ version: '3.7'
 
 services:
   gdrive-migrator:
-    image: pfidr/rclone:1.56.2
+    image: pfidr/rclone:1.63.0
     container_name: gdrive-migrator
     restart: unless-stopped
+    privileged: true
+    cap_add:
+      - SYS_ADMIN
     volumes:
       - ./:/config
+      - ${LOCAL_FS}:${LOCAL_FS}:shared
     environment:
-      SYNC_SRC: "old-gdrive:"
-      SYNC_DEST: "new-gdrive:"
-      SYNC_OPTS: '--log-level ${LOG_LEVEL} --stats 120s --buffer-size 128M --drive-chunk-size 128M --use-mmap --timeout 1m --config /config/rclone.conf --max-duration=${MAX_DURATION} --min-size=${MIN_SIZE} --max-size=${MAX_SIZE} --drive-server-side-across-configs --drive-stop-on-upload-limit --drive-stop-on-download-limit'
+      SYNC_SRC: ${LOCAL_FS}
+      SYNC_DEST: "gdrive:"
+      SYNC_OPTS: '--log-level ${LOG_LEVEL} --order-by size,descending  --stats 5m --use-mmap --timeout 2m --config /config/rclone.conf --max-duration=${MAX_DURATION} --max-transfer ${MAX_TRANSFER} --bwlimit ${BWLIMIT} --drive-skip-gdocs --drive-acknowledge-abuse --cutoff-mode SOFT --fast-list --drive-server-side-across-configs --drive-stop-on-download-limit --log-level NOTICE'
       RCLONE_DIR_CHECK_SKIP: 'false'
       RCLONE_CMD: copy
-      FORCE_SYNC: 'true'
+      FORCE_SYNC: ${FORCE_SYNC}
       TZ: ${DOCKER_TZ}
-      CRON: "0 * * * *"
+      CRON: "0 2 * * *"
       UID: ${PUID}
       GID: ${PGID}
 
