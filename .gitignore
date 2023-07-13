@@ -129,6 +129,7 @@ dmypy.json
 .pyre/
 
 keys/
+logs/
 rclone.conf
 rclone_docker.conf
 
