@@ -9,12 +9,13 @@ services:
     cap_add:
       - SYS_ADMIN
     volumes:
-      - ./:/config
+      - ./config:/config
+      - ./log:/log
       - ${LOCAL_FS}:${LOCAL_FS}:shared
     environment:
       SYNC_SRC: "gdrive:"
       SYNC_DEST: ${LOCAL_FS}
-      SYNC_OPTS: '--log-level ${LOG_LEVEL} --check-first --order-by size,descending  --stats 5m --use-mmap --timeout 2m --config /config/rclone.conf --max-duration=${MAX_DURATION} --max-transfer ${MAX_TRANSFER} --bwlimit ${BWLIMIT} --drive-skip-gdocs --drive-acknowledge-abuse --cutoff-mode SOFT --fast-list --drive-server-side-across-configs --drive-stop-on-download-limit'
+      SYNC_OPTS: '--log-level ${LOG_LEVEL} --check-first --order-by size,descending  --stats 5m --use-mmap --timeout 2m --config /config/rclone_docker.conf --max-duration=${MAX_DURATION} --max-transfer ${MAX_TRANSFER} --bwlimit ${BWLIMIT} --drive-skip-gdocs --drive-acknowledge-abuse --cutoff-mode SOFT --fast-list --drive-server-side-across-configs --drive-stop-on-download-limit'
       RCLONE_DIR_CHECK_SKIP: 'false'
       RCLONE_CMD: copy
       FORCE_SYNC: ${FORCE_SYNC}
