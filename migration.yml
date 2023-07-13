@@ -19,7 +19,7 @@ services:
       RCLONE_CMD: copy
       FORCE_SYNC: ${FORCE_SYNC}
       TZ: ${DOCKER_TZ}
-      CRON: "0 2 * * *"
+      CRON: ${RCLONE_CRON}
       UID: ${PUID}
       GID: ${PGID}
 
