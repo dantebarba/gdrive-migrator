@@ -10,7 +10,7 @@ services:
       - SYS_ADMIN
     volumes:
       - ./config:/config
-      - ./log:/log
+      - ./logs:/logs
       - ${LOCAL_FS}:${LOCAL_FS}:shared
     environment:
       SYNC_SRC: "gdrive:"
