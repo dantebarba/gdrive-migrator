@@ -22,6 +22,11 @@ services:
       CRON: ${RCLONE_CRON}
       UID: ${PUID}
       GID: ${PGID}
+      CHECK_URL: ${CHECK_URL}
+      HC_LOG: ${HC_LOG}
+      OUTPUT_LOG: ${OUTPUT_LOG}
+      ROTATE_LOG: ${ROTATE_LOG}
+
 
   rclone-sa-autoswap:
     image: dantebarba/rclone-sa-autoswap:latest
