@@ -33,7 +33,7 @@ services:
     image: dantebarba/rclone-sa-autoswap:latest
     container_name: rclone-sa-autoswap
     volumes:
-      - ./:/config
+      - ./config:/config
     environment:
       CRON: ${AUTOSWAP_CRON} # will renew the SA number once every hour
       MAX_NUMBER: ${SA_NUMBER} # the number of SAs you generated
