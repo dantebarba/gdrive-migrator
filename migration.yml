@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   gdrive-migrator:
-    image: pfidr/rclone:1.63.0
+    image: dantebarba/rclone:1.63-beta
     container_name: gdrive-migrator
     restart: unless-stopped
     privileged: true
