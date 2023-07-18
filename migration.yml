@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   gdrive-migrator:
-    image: pfidr34/rclone:1.63.0
+    image: pfidr/rclone:1.63.0
     container_name: gdrive-migrator
     restart: unless-stopped
     privileged: true
