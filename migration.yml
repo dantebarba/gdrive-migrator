@@ -27,6 +27,7 @@ services:
       HC_LOG: ${HC_LOG}
       OUTPUT_LOG: ${OUTPUT_LOG}
       ROTATE_LOG: ${ROTATE_LOG}
+      SUCCESS_CODES: "0 8"
 
 
   rclone-sa-autoswap:
